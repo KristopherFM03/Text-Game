@@ -45,7 +45,7 @@ public class textG {
         // This is just to make the dialogue and user input look a bit more pleasing to look at
         System.out.println("""
                 Hello and welcome adventurer!
-                My name is xxx, the Guide of Amouzia Kingdom!
+                My name is Malth, the Guide of Amouzia Kingdom!
                 We need your help to defeat some monsters that have overtook the local mine
                 Before we begin, tell me, what is your name?\
                 """);
@@ -93,7 +93,7 @@ public class textG {
                     System.out.println("""
                             Splendid. Tell me, do you believe to have been a |Fighter| in your past life?
                             Or perhaps, were you just a |Guardian|?
-                            \033[1mxxx looks at you, almost like he already knows your answer...\033[0m
+                            \033[1mMalth looks at you, almost like he already knows your answer...\033[0m
 
                             """);
                     reinCheck = true;
@@ -103,7 +103,7 @@ public class textG {
                     System.out.printf("""
                             Ah. Worry not friend, that doesn't change anything between us
                             What path would you like be on, %s? Are you a |Fighter| or a |Guardian|?
-                            \033[1mxxx looks at you, almost like he already knows your answer...\033[0m
+                            \033[1mMalth looks at you, almost like he already knows your answer...\033[0m
                             """, p1.getName());
                     reinCheck = true;
                     majorChoice = false;
@@ -111,7 +111,7 @@ public class textG {
                 }
                 default -> {
                     System.out.println("""
-                            \033[1mxxx looks at you confused...\033[0m
+                            \033[1mMalth looks at you confused...\033[0m
                             Hit your head? Not sure what you're saying my friend...
                             I'll ask again, do you believe in reincarnation? |Y/N|
                             """);
@@ -162,7 +162,7 @@ public class textG {
                 """, p1.getName());
             }
         }
-        System.out.println("-------------------------------------------------------\n");
+        System.out.println("-------------------------------------------------------");
     }
 
     /*this is where we provide a story. A sense of adventure
@@ -175,9 +175,8 @@ public class textG {
         Thread.sleep(10000);
         if (majorChoice) {
             System.out.print("""
-                    -------------------------------------------------------
                     Since you believe in reincarnation, let me see if I can get a read on your past life...
-                    \033[1mxxx places his hand on your head, his posture changes a bit and you can sense what happened.\033[0m
+                    \033[1mMalth places his hand on your head, his posture changes a bit and you can sense what happened.\033[0m
                     I see... oh that's terrible...
                     It seems you crossed the road and got hit by a truck, weren't you told to look both ways before crossing?
                     Right now, looks like you're in coma. Maybe you'll be able to find someone to help you, wake up?
@@ -208,6 +207,7 @@ public class textG {
       
                     """, p1.getName(), p1.getProfession());
         }
+        Thread.sleep(12000);
         System.out.print("""
                 
                 Before setting off to your adventure, lets try something.
@@ -228,15 +228,22 @@ public class textG {
                 \033[1mImmediately after doing that you get a massive headache, you begin to hold your head!
                 But then, there it is, you can see your stats!\033[0m
                 """);
+        Thread.sleep(5000);
         checkStats();
+        Thread.sleep(10000);
         System.out.printf("""
                 
                 \033[3mWoah,this is really like a game huh?\033[0m
+                
                 Sorry about that %s! I forgot to warn you about checking your stats for the first time!
                 But lets forget that and dare I say nicely done on checking your stats!
                 Now go to the Mines of Solitude and start your adventure, %s!
                 \033[3mHopefully that %s fellow is part of the prophecy...\033[0m
+                \033[1mAs Malth sees you slowly dissapate into the Mines of Solitude he slowly retreats back to Amouzia...\033[0m
+                -------------------------------------------------------
+                
                 """, p1.getName(), p1.getName(), p1.getName());
+        Thread.sleep(5000);
     }
 
     /*This is where we will do a small tutorial
@@ -244,11 +251,13 @@ public class textG {
     and then produce story
      */
     private static void adventureBegins() {
+
         System.out.print("""
                 So this is the Mines of Solitude huh?
                 Looks... well solitude-y...
                 \033[1mYou look around in the dark, you hear some squeaking?\033[0m
                 \033[3mWhat on earth is that sound? It doesn't remind me of any animal back home...\033[0m
+                Show yourself!
                 """);
         //bat swoops in
         //set bat stats
