@@ -5,6 +5,7 @@
  * eventually will evolve(?)
  */
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class textG {
@@ -12,6 +13,7 @@ public class textG {
     //making an instance of Player "p1" to be a new player.
     //The Player class is needed for everything, ranging from character selection, fighting, and more.
     private static final Player p1 = new Player();
+    private static final Enemy bat = new Enemy();
 
     /*
     Making a global scanner, so we don't have to continuously make new ones
@@ -242,5 +244,22 @@ public class textG {
     and then produce story
      */
     private static void adventureBegins() {
+        System.out.print("""
+                So this is the Mines of Solitude huh?
+                Looks... well solitude-y...
+                \033[1mYou look around in the dark, you hear some squeaking?\033[0m
+                \033[3mWhat on earth is that sound? It doesn't remind me of any animal back home...\033[0m
+                """);
+        //bat swoops in
+        //set bat stats
+        //then go to method combat system
+        //while enemy isAlive, do combat stuff
+    }
+
+    private static void setEnemy() {
+
+    }
+    private static void combatSystem() {
+
     }
 }

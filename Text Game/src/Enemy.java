@@ -1,27 +1,20 @@
-/**
- * Kristopher Fierro-Marin
- * 2/9/23
- * A file that contains the Player's info
- */
-
-
-/* Going to make an entire new file just for the Player object so, it doesn't become cramped.
-    Will need to do the same for enemies but, we'll cross that bridge later.
-    filename: Player.java
-*/
-public class Player {
-    private  String name;
-    private  String profession;
-    private  int hp;
-    private  int maxHp;
-    private  int xp;
-    private  int atk;
-    private  int def;
-    private  int level;
+public class Enemy {
+    private String name;
+    private int hp;
+    private int maxHp;
+    private int atk;
+    private int def;
+    private int level;
     private boolean isAlive;
 
     //initializing the player class
-    public Player() {
+    public Enemy() {
+        hp = 10;
+        maxHp = 10;
+        atk = 1;
+        def = 1;
+        //make it so that when a player fights an enemy they will be the same level
+        //will be like bat.setLevel(p1.getLevel)
         level = 1;
         isAlive = true;
     }
@@ -33,14 +26,6 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getProfession() {
-        return profession;
-    }
-
-    public void setProfession(String profession) {
-        this.profession = profession;
     }
 
     public int getHp() {
@@ -57,14 +42,6 @@ public class Player {
 
     public void setMaxHp(int maxHp) {
         this.maxHp = maxHp;
-    }
-
-    public int getXp() {
-        return xp;
-    }
-
-    public void setXp(int xp) {
-        this.xp = xp;
     }
 
     public int getAtk() {
