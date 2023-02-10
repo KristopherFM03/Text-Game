@@ -233,8 +233,8 @@ public class textG {
                 Sorry about that %s! I forgot to warn you about checking your stats for the first time!
                 But lets forget that and dare I say nicely done on checking your stats!
                 Now go to the Mines of Solitude and start your adventure, %s!
-                """, p1.getName(), p1.getName());
-
+                \033[3mHopefully that %s fellow is part of the prophecy...\033[0m
+                """, p1.getName(), p1.getName(), p1.getName());
     }
 
     /*This is where we will do a small tutorial
