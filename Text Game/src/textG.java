@@ -5,11 +5,9 @@
  * eventually will evolve(?)
  * */
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class textG {
-
 
     //making an instance of Player "p1" to be a new player.
     //The Player class is needed for everything, ranging from character selection, fighting, and more.
@@ -25,7 +23,7 @@ public class textG {
                 ------------------------------------------------------------------
                 Hey there! My name is Kris Fierro and thanks for checking this out!
                 Just wanted to try to do a small text game so don't expect anything crazy, yet. :)
-                Just wanted to let you know that if there is text between these symbols: <>, then that is a keyword for choices.
+                Just wanted to let you know that if there is text between these symbols: ||, then that is a keyword for choices.
                 Thanks again and have fun!
                 ------------------------------------------------------------------
                 """);
@@ -43,19 +41,17 @@ public class textG {
         characterSelect();
         prologue();
         adventureBegins();
-        /*
-        Code to print out character stats in a text block
+        //Code to print out character stats in a text block
+
         System.out.printf("""
-                %s
-                %s
-                %d
-                %d
-                %d
-                %d
-                %d
-                %d
+               <Name: %s>
+               <Profession: %s>
+               <HP: %d/%d>
+               <XP: %d>
+               <ATK: %d>
+               <DEF: %d>
+               <LEVEL: %d>
                 """, p1.getName(), p1.getProfession(), p1.getHp(), p1.getMaxHp(), p1.getXp(), p1.getAtk(), p1.getDef(), p1.getLevel());
-         */
 
     }
 
@@ -67,7 +63,7 @@ public class textG {
         //setting a boolean called charSelect & reinCheck so that we can use input validation
         boolean charSelect = false;
         boolean reinCheck = false;
-        System.out.println("Welcome " + p1.getName() + ", tell me something. Do you believe in reincarnation? <Y/N>");
+        System.out.println("Welcome " + p1.getName() + ", tell me something. Do you believe in reincarnation? |Y/N|");
         userInput = scan.nextLine();
         /*Making a while loop that has an enhanced switch case inside where if check to see if the user input is either Y or N
         If it's neither one of those then, it goes to default and repeats the question.
@@ -77,15 +73,15 @@ public class textG {
             switch(userInput.toUpperCase()) {
                 case "Y" -> {
                     System.out.println("""
-                            Splendid. Tell me do you believe to have been a <Fighter> in your past life?");
-                            Or perhaps, were you just a <Guardian>?
+                            Splendid. Tell me do you believe to have been a |Fighter| in your past life?");
+                            Or perhaps, were you just a |Guardian|?
                             """);
                     reinCheck = true;
                 }
                 case "N" -> {
                     System.out.printf("""
                             Ah. Worry not friend, that doesn't change anything between us
-                            What path would you like be on, %s? Are you a <Fighter> or a <Guardian>?
+                            What path would you like be on, %s? Are you a |Fighter| or a |Guardian|?
                             """, p1.getName());
                     reinCheck = true;
 
@@ -93,7 +89,7 @@ public class textG {
                 default -> {
                     System.out.println("""
                             Not sure what you're saying my friend...
-                            I'll ask again, do you believe in reincarnation? <Y/N>
+                            I'll ask again, do you believe in reincarnation? |Y/N|
                             """);
                     userInput = scan.nextLine();
                 }
@@ -103,11 +99,12 @@ public class textG {
         while (!charSelect) {
             userInput = scan.nextLine();
             //enhanced switch statement
-            //instead of using break statements we can now use ->
+            //instead of using break statements we can now use -|
             switch (userInput.toLowerCase()) {
                 case "fighter" -> {
                     p1.setProfession("Fighter");
                     p1.setMaxHp(10);
+                    p1.setHp(p1.getMaxHp());
                     p1.setXp(0);
                     p1.setAtk(3);
                     p1.setDef(1);
@@ -117,6 +114,7 @@ public class textG {
                 case "guardian" -> {
                     p1.setProfession("Guardian");
                     p1.setMaxHp(15);
+                    p1.setHp(p1.getMaxHp());
                     p1.setXp(0);
                     p1.setAtk(1);
                     p1.setDef(3);
@@ -125,7 +123,7 @@ public class textG {
                 }
                 default -> System.out.printf("""
                 I uh... don't know what to say %s, those are your only two choices...
-                So... <Fighter> or <Guardian>?
+                So... |Fighter| or |Guardian|?
                 """, p1.getName());
             }
         }
@@ -137,7 +135,6 @@ public class textG {
     since this is a rough idea, we can just leave it small/minimal
     */
     private static void prologue() {
-
     }
 
     /*This is where we will do a small tutorial
@@ -146,7 +143,4 @@ public class textG {
      */
     private static void adventureBegins() {
     }
-
-
-
 }
