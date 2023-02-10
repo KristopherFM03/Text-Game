@@ -119,12 +119,12 @@ public class textG {
             //instead of using break statements we can now use -|
             switch (userInput.toLowerCase()) {
                 case "fighter" -> {
-                    System.out.printf("""
+                    System.out.print("""
                     Ah, so you have chosen the path of the Fighter.
                     Mastering offensive abilities, Fighters are the embodiment of Glass Cannons.
                     (Glass cannons are characters or units with strong offensive power but lack defensive capabilities)
-                    I wish you the best of luck with your adventure, %s.
-                    """, p1.getName());
+                    
+                    """);
                     p1.setProfession("Fighter");
                     p1.setMaxHp(10);
                     p1.setHp(p1.getMaxHp());
@@ -135,11 +135,11 @@ public class textG {
                     charSelect = true;
                 }
                 case "guardian" -> {
-                    System.out.printf("""
+                    System.out.print("""
                     Ah, so you have chosen the path of the Guardian.
                     Mastering defensive abilities, Guardians are the embodiment of Titans.
-                    I wish you the best of luck with your adventure, %s.
-                    """, p1.getName());
+                    
+                    """);
                     p1.setProfession("Guardian");
                     p1.setMaxHp(15);
                     p1.setHp(p1.getMaxHp());
@@ -212,10 +212,10 @@ public class textG {
                 System.out.println("Try again, remember to concentrate on the word |stats|");
             }
         }
-        System.out.print("""
+        System.out.printf("""
                 Nicely done!
-                Now go to the Mines of Solitude and start your adventure, %s!        
-                """);
+                Now go to the Mines of Solitude and start your adventure, %s!
+                """, p1.getName());
     }
 
     /*This is where we will do a small tutorial
