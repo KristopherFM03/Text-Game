@@ -2,7 +2,7 @@
  * Kristopher Fierro-Marin
  * 2/9/23
  * A file that contains the Player's info
- * */
+ */
 
 
 /* Going to make an entire new file just for the Player object so, it doesn't become cramped.
