@@ -5,9 +5,9 @@
  * */
 
 
-/* Going to make an entire new file just for the Player object so, it doesn't become cramped. check
+/* Going to make an entire new file just for the Player object so, it doesn't become cramped.
     Will need to do the same for enemies but, we'll cross that bridge later.
-    Will need to change to private void and utilize those setters and getters.
+
     filename: Player.java
 */
 
@@ -41,18 +41,5 @@ public class Player {
         LVL = lvl;
     }
 
-    public int getAtk() {
-        return ATK;
-    }
 
-    public int getDef() {
-        return DEF;
-    }
-    public int getMaxHP() {
-        return maxHP;
-    }
-
-    public String getName() {
-        return name;
-    }
 }
