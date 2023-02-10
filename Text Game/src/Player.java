@@ -7,39 +7,85 @@
 
 /* Going to make an entire new file just for the Player object so, it doesn't become cramped.
     Will need to do the same for enemies but, we'll cross that bridge later.
-
     filename: Player.java
 */
-
-
 public class Player {
-    public static String name;
-    public static String profession;
-    public static int HP;
-    public static int maxHP;
-    public static int XP;
-    public static int ATK;
-    public static int DEF;
-    public static int LVL;
+    private  String name;
+    private  String profession;
+    private  int hp;
+    private  int maxHp;
+    private  int xp;
+    private  int atk;
+    private  int def;
+    private  int level;
 
     //initializing the player class
     public Player() {
-        HP = maxHP;
-        LVL = 1;
+        level = 1;
     }
+
     /* Getters & Setters */
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
     public int getHp() {
-        return HP;
-    }
-    public void setHP(int hp) {
-        HP = hp;
-    }
-    public int getLvl() {
-        return HP;
-    }
-    public void setLvl(int lvl) {
-        LVL = lvl;
+        return hp;
     }
 
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
 
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
+    public int getAtk() {
+        return atk;
+    }
+
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+
+    public int getDef() {
+        return def;
+    }
+
+    public void setDef(int def) {
+        this.def = def;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int lvl) {
+        this.level = lvl;
+    }
 }
