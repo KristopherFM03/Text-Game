@@ -4,13 +4,12 @@ This is just a small-scale text-based project that I've been considering but hav
 
 The main things I'd like to add to this are:
 (These are the needs.)
-There are two classes to choose from: fighter and guardian. (Two classes so I can focus on two classes rather than 9+)
+There are two classes to choose from: fighter and guardian. (Two classes so I can focus on them rather than 9+)
 A turn based combat system
 The ability to level up and gain skill points (to increase a player's stats)
 And create a story that can draw users in.
 
-Evenetually I want to add
-
+Evenetually I want to add:
 (These are our wants.)
 Weapons system
 Potions
