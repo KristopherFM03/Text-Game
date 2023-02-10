@@ -25,7 +25,7 @@ public class textG {
     private static boolean majorChoice = false;
 
     public static void main(String[] args) throws InterruptedException {
-        //small intro and tells what the choices are going to be
+        //small intro that tells what the choices are going to be and some important details about text
         System.out.println("""
                 ------------------------------------------------------------------
                 Hey there! My name is Kris Fierro and thanks for checking this out!
@@ -33,16 +33,17 @@ public class textG {
                 Just wanted to let you know a couple of things
                 If there is text between these symbols: ||, then that is a keyword for choices.
                 Thanks again and have fun!
+                \033[1mText that are bold are going to be considered as actions\033[0m
+                \033[3mWhile text that are italicized are going to be considered as thoughts\033[0m
                 ------------------------------------------------------------------
                 """);
-
-
         //waits 5 seconds to print out the next text block
         Thread.sleep(5000);
         //a "\" at the end will make it so a new line doesn't appear.
         // This is just to make the dialogue and user input look a bit more pleasing to look at
         System.out.println("""
                 Hello and welcome adventurer!
+                My name is xxx, the Guide of Amouzia Kingdom!
                 We need your help to defeat some monsters that have overtook the local mine
                 Before we begin, tell me, what is your name?\
                 """);
@@ -90,6 +91,8 @@ public class textG {
                     System.out.println("""
                             Splendid. Tell me, do you believe to have been a |Fighter| in your past life?
                             Or perhaps, were you just a |Guardian|?
+                            \033[1mxxx looks at you, almost like he already knows your answer...\033[0m
+
                             """);
                     reinCheck = true;
                     majorChoice = true;
@@ -98,6 +101,7 @@ public class textG {
                     System.out.printf("""
                             Ah. Worry not friend, that doesn't change anything between us
                             What path would you like be on, %s? Are you a |Fighter| or a |Guardian|?
+                            \033[1mxxx looks at you, almost like he already knows your answer...\033[0m
                             """, p1.getName());
                     reinCheck = true;
                     majorChoice = false;
@@ -105,7 +109,8 @@ public class textG {
                 }
                 default -> {
                     System.out.println("""
-                            Not sure what you're saying my friend...
+                            \033[1mxxx looks at you confused...\033[0m
+                            Hit your head? Not sure what you're saying my friend...
                             I'll ask again, do you believe in reincarnation? |Y/N|
                             """);
                     userInput = scan.nextLine();
@@ -120,7 +125,7 @@ public class textG {
             switch (userInput.toLowerCase()) {
                 case "fighter" -> {
                     System.out.print("""
-                    Ah, so you have chosen the path of the Fighter.
+                    Ah, the Fighter.
                     Mastering offensive abilities, Fighters are the embodiment of Glass Cannons.
                     (Glass cannons are characters or units with strong offensive power but lack defensive capabilities)
                     
@@ -136,9 +141,9 @@ public class textG {
                 }
                 case "guardian" -> {
                     System.out.print("""
-                    Ah, so you have chosen the path of the Guardian.
-                    Mastering defensive abilities, Guardians are the embodiment of Titans.
-                    
+                    Ah, the Guardian.
+                    Mastering defensive abilities, Guardians are the embodiment of Tanks.
+                    (Tanks are a staple to RPGs and their role is to take damage while team members deal damage to enemies)
                     """);
                     p1.setProfession("Guardian");
                     p1.setMaxHp(15);
@@ -168,12 +173,13 @@ public class textG {
         Thread.sleep(10000);
         if (majorChoice) {
             System.out.print("""
+                    -------------------------------------------------------
                     Since you believe in reincarnation, let me see if I can get a read on your past life...
+                    \033[1mxxx places his hand on your head, his posture changes a bit and you can sense what happened.\033[0m
                     I see... oh that's terrible...
                     It seems you crossed the road and got hit by a truck, weren't you told to look both ways before crossing?
                     Right now, looks like you're in coma. Maybe you'll be able to find someone to help you, wake up?
-                                        
-                                        
+                    -------------------------------------------------------
                     """);
             //waits 5 seconds to print out the next text block
             //didn't want it to be the huge chunk of text
@@ -182,7 +188,10 @@ public class textG {
                     Anyways %s, we need your help. I know I said we had some monsters in the mines but the truth is...
                     You might be the prodigal %s that we were told would come and save Amouzia Kingdom.
                     I know you're still processing the fact you got transported to another world but please, help us out.
-                                        
+                    
+                    \033[3mOf course you're still processing what happened! First you get smacked with the truth of your untimely accident.
+                    And now you have to help in a world where you have no idea whats going on!
+                    Nevermind that, might as well hear him out...\033[0m
                     """, p1.getName(), p1.getProfession());
         } else {
             System.out.printf("""
@@ -198,24 +207,34 @@ public class textG {
                     """, p1.getName(), p1.getProfession());
         }
         System.out.print("""
+                
                 Before setting off to your adventure, lets try something.
                 Here lets start with the basics, think and concentrate on the word |stats|.
+                \033[3mAlright, here goes nothing. Concentrating everything into:\033[0m
                 """);
 
         boolean statShowcase = false;
         while (!statShowcase) {
-            userInput = scan.nextLine();
+            userInput = scan.next();
             if (userInput.equalsIgnoreCase("stats")) {
-                checkStats();
                 statShowcase = true;
             } else {
                 System.out.println("Try again, remember to concentrate on the word |stats|");
             }
         }
+        System.out.print("""
+                \033[1mImmediately after doing that you get a massive headache, you begin to hold your head!
+                But then, there it is, you can see your stats!\033[0m
+                """);
+        checkStats();
         System.out.printf("""
-                Nicely done!
+                
+                \033[3mWoah,this is really like a game huh?\033[0m
+                Sorry about that %s! I forgot to warn you about checking your stats for the first time!
+                But lets forget that and dare I say nicely done on checking your stats!
                 Now go to the Mines of Solitude and start your adventure, %s!
-                """, p1.getName());
+                """, p1.getName(), p1.getName());
+
     }
 
     /*This is where we will do a small tutorial
