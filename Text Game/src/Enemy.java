@@ -1,3 +1,9 @@
+/**
+ * Kristopher Fierro-Marin
+ * 2/10/23
+ * A file that contains Enemy info
+ */
+
 public class Enemy {
     private String name;
     private int hp;
@@ -7,17 +13,36 @@ public class Enemy {
     private int level;
     private boolean isAlive;
 
-    //initializing the player class
-    public Enemy() {
+    //initializing a Bat, Slime and our first boss Skeleton King
+    public void Bat() {
+        name = "Bat";
         hp = 10;
         maxHp = 10;
         atk = 1;
         def = 1;
-        //make it so that when a player fights an enemy they will be the same level
-        //will be like bat.setLevel(p1.getLevel)
         level = 1;
         isAlive = true;
     }
+    public void Slime() {
+        name = "Green Slime";
+        hp = 15;
+        maxHp = 10;
+        atk = 0;
+        def = 1;
+        level = 1;
+        isAlive = true;
+
+    }
+    public void SkeletonKing() {
+        name = "SKELETOR";
+        hp = 40;
+        maxHp = 40;
+        atk = 5;
+        def = 5;
+        level = 4;
+        isAlive = true;
+    }
+
 
     /* Getters & Setters */
     public String getName() {
