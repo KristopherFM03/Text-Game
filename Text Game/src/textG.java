@@ -40,7 +40,6 @@ public class textG {
                 Seeing text without any of the above features is considered to be narration.
                 -----------------------------------------------------------------------------------------------------------------------
                 """);
-
         //waits 5 seconds to print out the next text block
         Thread.sleep(5000);
         //a "\" at the end will make it so a new line doesn't appear.
@@ -266,7 +265,6 @@ public class textG {
     and then produce a story
      */
     private static void adventureBegins() throws InterruptedException {
-
         System.out.printf("""
                 Our prodigal hero, %s, has arrived outside the Mines of Solitude.
                 Little does our hero know that the cave is currently inhabited by bats and slimes!
@@ -290,7 +288,6 @@ public class textG {
         setEnemy();
         System.out.print("""
                 "Let's check the stats on this Bat..."
-                -----------------------------------------------------------------------------------------------------------------------
                 """);
         checkEnemyStats();
         //fighting begins in this method
@@ -306,8 +303,74 @@ public class textG {
         enemy.setDef((int) (enemy.getDef() * (enemy.getLevel() + 1.1)));
     }
 
-
+    /*
+        Combat will be a large while loop
+        maybe make all actions into a separate method?
+        for example attack/check stats/ability(soon^(tm))
+         */
     private static void combatSystem() {
-
+        while (enemy.isAlive()) {
+            System.out.print("""
+                    ----------------------------------
+                    What are you going to do?
+                    |ATTACK|            Check |STATS|
+                    
+                         Check |ENEMY STATS|
+                    ----------------------------------
+                    """);
+            userInput = scan.nextLine();
+            switch (userInput.toLowerCase()) {
+                case "attack" -> {
+                    attack();
+                }
+                case "stats" -> {
+                    checkStats();
+                }
+                case "enemy stats" -> {
+                    checkEnemyStats();
+                }
+                default -> {
+                    System.out.printf("""
+                            \033[3mThe voice of Melth comes into my head and says...\033[0m
+                            "That is not an option %s..."
+                            """, p1.getName());
+                }
+            }
+        }
+        if (!p1.isAlive()) {
+            System.out.println("YOU DIED");
+        } else {
+            System.out.println("\"Sweet! I just defeated that monster!\"");
+        }
+        //after defeating the bat, you delve deeper and then an option will appear to explore/rest/train
+        //exploring will make you continue the mines
+        //rest will restore hp
+        //train will increase xp by fighting random monsters
     }
+
+    //future plan, have a luck stat for critical strikes (2x damage)
+    private static void attack() {
+        //deal damage/ negate some damage with def
+        //player will move first, this might be changed in the future
+        int enemyDam = ((int)Math.floor(Math.random() * ((enemy.getAtk() * 2) - enemy.getAtk() + 1) + enemy.getAtk())) - p1.getDef();
+        //doing this so if a player's defense is greater than the damage, they don't get healed.
+            if (enemyDam <= 0) {
+                enemyDam = 0;
+            }
+        int playerDam = ((int)Math.floor(Math.random() * ((p1.getAtk() * 2) - p1.getAtk() + 1) + p1.getAtk())) - enemy.getDef();
+            if (playerDam <= 0) {
+                playerDam = 0;
+            }
+
+        //updating health values
+        enemy.setHp(enemy.getHp() - (playerDam));
+        System.out.println(p1.getName() + " did " + playerDam + " damage!");
+        if (enemy.getHp() <= 0) {
+            enemy.setAlive(false);
+        } else {
+            p1.setHp((p1.getHp() - (enemyDam)));
+            System.out.println(enemy.getName() + " did " + enemyDam + " damage!");
+        }
+    }
+
 }
