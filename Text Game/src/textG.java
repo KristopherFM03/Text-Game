@@ -5,6 +5,9 @@
  * eventually will evolve(?)
  */
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 import java.util.Scanner;
 
 public class textG {
@@ -24,8 +27,9 @@ public class textG {
     private static final Scanner scan = new Scanner(System.in);
     private static String userInput;
     private static boolean majorChoice = false;
+    private static boolean choiceMade = false;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
         //small intro that tells what the choices are going to be and some important details about the text
         System.out.println("""
                 -----------------------------------------------------------------------------------------------------------------------
@@ -64,26 +68,26 @@ public class textG {
     //players will be able to check their stats with ease. The user will just need to type s in combat
     private static void checkStats() {
         System.out.printf("""
-               <Name: %s>
-               <Profession: %s>
-               <HP: %d/%d>
-               <XP: %d>
-               <ATK: %d>
-               <DEF: %d>
-               <LEVEL: %d>
-                """, p1.getName(), p1.getProfession(), p1.getHp(), p1.getMaxHp(), p1.getXp(), p1.getAtk(), p1.getDef(), p1.getLevel());
+                <Name: %s>
+                <Profession: %s>
+                <HP: %d/%d>
+                <XP: %d>
+                <ATK: %d>
+                <DEF: %d>
+                <LEVEL: %d>
+                 """, p1.getName(), p1.getProfession(), p1.getHp(), p1.getMaxHp(), p1.getXp(), p1.getAtk(), p1.getDef(), p1.getLevel());
 
     }
 
     //during combat players can check the enemy's stats
     private static void checkEnemyStats() {
         System.out.printf("""
-               <Name: %s>
-               <HP: %d/%d>
-               <ATK: %d>
-               <DEF: %d>
-               <LEVEL: %d>
-                """, enemy.getName(), enemy.getHp(), enemy.getMaxHp(), enemy.getAtk(), enemy.getDef(), enemy.getLevel());
+                <Name: %s>
+                <HP: %d/%d>
+                <ATK: %d>
+                <DEF: %d>
+                <LEVEL: %d>
+                 """, enemy.getName(), enemy.getHp(), enemy.getMaxHp(), enemy.getAtk(), enemy.getDef(), enemy.getLevel());
 
     }
 
@@ -93,16 +97,14 @@ public class textG {
     */
     public static void characterSelect() {
         //setting a boolean called charSelect & reinCheck so that we can use input validation
-        boolean charSelect = false;
-        boolean reinCheck = false;
         System.out.println("\"Welcome " + p1.getName() + ", tell me something. Do you believe in reincarnation? |Y/N|\"");
         userInput = scan.nextLine();
         /*Making a while loop that has an enhanced switch case inside where if check to see if the user input is either Y or N
         If it's neither one of those then, it goes to default and repeats the question.
         Once the user answers either y or n we stop the loop and continue with the character selection.
         */
-        while (!reinCheck) {
-            switch(userInput.toUpperCase()) {
+        while (!majorChoice) {
+            switch (userInput.toUpperCase()) {
                 case "Y" -> {
                     System.out.println("""
                             "Splendid. Tell me, do you believe to have been a |Fighter| in your past life?
@@ -110,17 +112,15 @@ public class textG {
                             \033[1mMalth looks at you, almost like he already knows your answer...\033[0m
                             -----------------------------------------------------------------------------------------------------------------------
                             """);
-                    reinCheck = true;
                     majorChoice = true;
                 }
                 case "N" -> {
                     System.out.printf("""
-                           "Ah. Worry not friend, that doesn't change anything between us
-                           What path would you like to be on, %s? Are you a |Fighter| or a |Guardian|?"
-                           \033[1mMalth looks at you, almost like he already knows your answer...\033[0m
-                           -----------------------------------------------------------------------------------------------------------------------
-                            """, p1.getName());
-                    reinCheck = true;
+                            "Ah. Worry not friend, that doesn't change anything between us
+                            What path would you like to be on, %s? Are you a |Fighter| or a |Guardian|?"
+                            \033[1mMalth looks at you, almost like he already knows your answer...\033[0m
+                            -----------------------------------------------------------------------------------------------------------------------
+                             """, p1.getName());
                     majorChoice = false;
 
                 }
@@ -135,17 +135,17 @@ public class textG {
             }
         }
         //now we split into two statements between fighter and guardian
-        while (!charSelect) {
+        while (!choiceMade) {
             userInput = scan.nextLine();
             //enhanced switch statement
             //instead of using break statements we can now use -|
             switch (userInput.toLowerCase()) {
                 case "fighter" -> {
                     System.out.print("""
-                    "Ah, the Fighter...
-                    Mastering offensive abilities, Fighters are the embodiment of Glass Cannons.
-                    Glass cannons are characters or units with strong offensive power but lack defensive capabilities"
-                    """);
+                            "Ah, the Fighter...
+                            Mastering offensive abilities, Fighters are the embodiment of Glass Cannons.
+                            Glass cannons are characters or units with strong offensive power but lack defensive capabilities"
+                            """);
                     p1.setProfession("Fighter");
                     p1.setMaxHp(15);
                     p1.setHp(p1.getMaxHp());
@@ -153,14 +153,14 @@ public class textG {
                     p1.setAtk(5);
                     p1.setDef(2);
                     p1.setLevel(1);
-                    charSelect = true;
+                    choiceMade = true;
                 }
                 case "guardian" -> {
                     System.out.print("""
-                    "Ah, the Guardian...
-                    Mastering defensive abilities, Guardians are the embodiment of Tanks.
-                    Tanks are a staple to RPGs and their role is to take damage while team members deal damage to enemies."
-                    """);
+                            "Ah, the Guardian...
+                            Mastering defensive abilities, Guardians are the embodiment of Tanks.
+                            Tanks are a staple to RPGs and their role is to take damage while team members deal damage to enemies."
+                            """);
                     p1.setProfession("Guardian");
                     p1.setMaxHp(20);
                     p1.setHp(p1.getMaxHp());
@@ -168,12 +168,12 @@ public class textG {
                     p1.setAtk(2);
                     p1.setDef(5);
                     p1.setLevel(1);
-                    charSelect = true;
+                    choiceMade = true;
                 }
                 default -> System.out.printf("""
-                "I uh... don't know what to say %s, those are your only two choices...
-                So... |Fighter| or |Guardian|?"
-                """, p1.getName());
+                        "I uh... don't know what to say %s, those are your only two choices...
+                        So... |Fighter| or |Guardian|?"
+                        """, p1.getName());
             }
         }
         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
@@ -228,12 +228,11 @@ public class textG {
                 Here let's start with the basics, think, and concentrate on the word |stats|."
                 \033[3mAlright, here goes nothing. Concentrating everything into:\033[0m
                 """);
-
-        boolean statShowcase = false;
-        while (!statShowcase) {
-            userInput = scan.next();
+        choiceMade = false;
+        while (!choiceMade) {
+            userInput = scan.nextLine();
             if (userInput.equalsIgnoreCase("stats")) {
-                statShowcase = true;
+                choiceMade = true;
             } else {
                 System.out.println("\"Try again, remember to concentrate on the word |stats|\"");
             }
@@ -249,7 +248,7 @@ public class textG {
         System.out.printf("""
                 -----------------------------------------------------------------------------------------------------------------------
                 \033[3mWoah, this is really like a game huh?\033[0m
-                
+                                
                 "Sorry about that %s! I forgot to warn you about checking your stats for the first time!
                 But let's forget that and dare I say nicely done on checking your stats!
                 Now go to the Mines of Solitude and start your adventure, %s!"
@@ -264,13 +263,13 @@ public class textG {
     Just fight some monsters, get xp, and acquire skill points
     and then produce a story
      */
-    private static void adventureBegins() throws InterruptedException {
+    private static void adventureBegins() throws InterruptedException, FileNotFoundException {
         System.out.printf("""
                 Our prodigal hero, %s, has arrived outside the Mines of Solitude.
                 Little does our hero know that the cave is currently inhabited by bats and slimes!
                 Oh, look! %s is entering the mines!
                 -----------------------------------------------------------------------------------------------------------------------
-                """,  p1.getName(), p1.getName());
+                """, p1.getName(), p1.getName());
         Thread.sleep(5000);
         System.out.print("""
                 \033[1mYou look around in the dark, you hear some squeaking?\033[0m
@@ -292,12 +291,52 @@ public class textG {
         checkEnemyStats();
         //fighting begins in this method
         combatSystem();
+        //after defeating the bat, you delve deeper and then an option will appear to explore/rest/train
+        //exploring will grant a chance to get an item for your character <- NOT DONE. WILL BE WHEN ITEMS ARE IMPLEMENTED
+        //rest will restore hp
+        //train will increase xp by fighting random monsters
+        System.out.print("""
+                "What to do now...
+                Seems like I can continue to |explore| the Mines of Solitude.
+                Maybe I should |rest| up before heading out.
+                Or should I just |train|?"
+                """);
+        choiceMade = false;
+        while (!choiceMade) {
+            userInput = scan.nextLine();
+            switch (userInput.toLowerCase()) {
+                case "explore" -> {
+                    System.out.println("\"woop\"");
+                    continueAdv();
+                }
+                case "rest" -> {
+                    System.out.println("\"Time to rest and restore my health\"");
+                    p1.setHp(p1.getMaxHp());
+                    continueAdv();
+                }
+                case "train" -> {
+                    System.out.println("\"training time\"");
+                    p1.setXp((int) Math.floor(Math.random() * (p1.getMaxHp() - p1.getLevel() + 1) + p1.getLevel()));
+                    checkLevel();
+                }
+                default -> System.out.println("\"I should probably take a rest if I cant think what to do...\"");
+            }
+        }
+    }
+
+    private static void continueAdv() {
+        //this is the second act of the game, here we are going to the enemy a slime
+        //try to make it so the slime divides in two?
+        //or something
+        //setting: still in the Mines of Solitude
+
+
     }
 
     //setEnemy method is going to update the stats based on the enemy's level and their stats to make it fair.
     private static void setEnemy() {
         enemy.setLevel(p1.getLevel());
-        enemy.setHp((int) (enemy.getMaxHp() * ((enemy.getLevel()/10) + 1.2)));
+        enemy.setHp((int) (enemy.getMaxHp() * ((enemy.getLevel() / 10) + 1.2)));
         enemy.setMaxHp(enemy.getHp());
         enemy.setAtk((int) (enemy.getAtk() * (enemy.getLevel() + 1.1)));
         enemy.setDef((int) (enemy.getDef() * (enemy.getLevel() + 1.1)));
@@ -308,13 +347,13 @@ public class textG {
         maybe make all actions into a separate method?
         for example attack/check stats/ability(soon^(tm))
          */
-    private static void combatSystem() {
+    private static void combatSystem() throws FileNotFoundException {
         while (enemy.isAlive()) {
             System.out.print("""
                     ----------------------------------
                     What are you going to do?
                     |ATTACK|            Check |STATS|
-                    
+                                        
                          Check |ENEMY STATS|
                     ----------------------------------
                     """);
@@ -341,26 +380,23 @@ public class textG {
             System.out.println("YOU DIED");
         } else {
             System.out.println("\"Sweet! I just defeated that monster!\"");
+            checkLevel();
         }
-        //after defeating the bat, you delve deeper and then an option will appear to explore/rest/train
-        //exploring will make you continue the mines
-        //rest will restore hp
-        //train will increase xp by fighting random monsters
     }
 
     //future plan, have a luck stat for critical strikes (2x damage)
     private static void attack() {
         //deal damage/ negate some damage with def
         //player will move first, this might be changed in the future
-        int enemyDam = ((int)Math.floor(Math.random() * ((enemy.getAtk() * 2) - enemy.getAtk() + 1) + enemy.getAtk())) - p1.getDef();
+        int enemyDam = ((int) Math.floor(Math.random() * ((enemy.getAtk() * 2) - enemy.getAtk() + 1) + enemy.getAtk())) - p1.getDef();
         //doing this so if a player's defense is greater than the damage, they don't get healed.
-            if (enemyDam <= 0) {
-                enemyDam = 0;
-            }
-        int playerDam = ((int)Math.floor(Math.random() * ((p1.getAtk() * 2) - p1.getAtk() + 1) + p1.getAtk())) - enemy.getDef();
-            if (playerDam <= 0) {
-                playerDam = 0;
-            }
+        if (enemyDam <= 0) {
+            enemyDam = 0;
+        }
+        int playerDam = ((int) Math.floor(Math.random() * ((p1.getAtk() * 2) - p1.getAtk() + 1) + p1.getAtk())) - enemy.getDef();
+        if (playerDam <= 0) {
+            playerDam = 0;
+        }
 
         //updating health values
         enemy.setHp(enemy.getHp() - (playerDam));
@@ -373,4 +409,24 @@ public class textG {
         }
     }
 
+    //with check level, I made a text file with predetermined xp thresholds
+    public static void checkLevel() throws FileNotFoundException {
+        int i = p1.getLevel();
+        File myObj = new File("levels.txt");
+        Scanner myReader = new Scanner(myObj);
+        for (int j = 0; j < p1.getLevel(); j++) {
+            System.out.println(j);
+            myReader.nextLine();
+        }
+        while (myReader.hasNextLine()) {
+            int data = Integer.parseInt(myReader.nextLine());
+            if (p1.getXp() >= data) {
+                i++;
+                p1.setLevel(i);
+                break;
+            }
+            i++;
+        }
+        myReader.close();
+    }
 }
